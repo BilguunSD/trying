@@ -4,13 +4,14 @@ import menuVideo from "./assets/Mainn.mp4";
 import main1 from "./assets/main1.mp4";
 import main2 from "./assets/main2.mp4";
 import main3 from "./assets/main3.mp4";
+import BackgroundMusic from "./BackgroundMusic";
 import P3Menu from "./P3Menu";
 import VideoPage from "./VideoPage";
 import ResumePage from "./ResumePage";
 import PageTransition from "./PageTransition";
 import Socials from "./Socials";
 import AboutMe from "./AboutMe";
-import CYN from "./assets/coloryournight.mp3";
+import Cyn from "./assets/coloryournight.mp3";
 import "./App.css";
 
 function MenuScreen() {
@@ -18,9 +19,7 @@ function MenuScreen() {
   return (
     <div id="menu-screen">
       <video src={menuVideo} autoPlay loop muted playsInline />
-      <audio>
-        <source src="./assets/coloryournight.mp3" type="audio/mpeg" git />
-      </audio>
+      <BackgroundMusic src={Cyn} />
       <P3Menu onNavigate={(page) => navigate(`/${page}`)} />
     </div>
   );
