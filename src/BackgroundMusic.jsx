@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./BackgroundMusic.css";
 
-export default function BackgroundMusic({
-  src = "./assets/coloryournight.mp3",
-}) {
+export default function BackgroundMusic({ src, clicSrc }) {
   const audioRef = useRef(null);
   const [volume, setVolume] = useState(0.5);
 
@@ -17,24 +15,31 @@ export default function BackgroundMusic({
     const audio = audioRef.current;
     if (!audio) return;
 
+    const sfx = clickSrc ? new Audio(clickSrc) : null;
     const events = ["pointerdown", "keydown", "touchstart"];
 
     const removeListeners = () =>
       events.forEach((e) => document.removeEventListener(e, start));
 
+    const playSong = () => audio.play().catch(() => {});
+
     function start() {
-      audio
-        .play()
-        .then(removeListeners)
-        .catch(() => {});
+      removeListeners();
+      if (sfx) {
+        sfx.addEventListener("ended", playSong, { once: true });
+        sfx.play().catch(playSong);
+      } else {
+        playSong();
+      }
     }
 
-    audio.play().catch(() => {
-      events.forEach((e) => document.addEventListener(e, start));
-    });
+    events.forEach((e) => document.addEventListener(e, start));
 
-    return removeListeners;
-  }, []);
+    return () => {
+      removeListeners();
+      if (sfx) sfx.pause();
+    };
+  }, [clickSrc]);
 
   const icon = volume === 0 ? "🔇" : volume < 0.5 ? "🔉" : "🔊";
 
