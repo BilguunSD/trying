@@ -1,11 +1,56 @@
 import { useState, useEffect } from "react";
 
 const ITEMS = [
-  { id: "about",   label: "ABOUT ME",      page: "about",   fontSize: 80, offsetX: 0,  offsetY: 0,  skew: -6,  skewY: 10  },
-  { id: "resume",  label: "RESUME",        page: "resume",  fontSize: 66, offsetX: 20, offsetY: 8,  skew: -11, skewY: -10 },
-  { id: "github",  label: "GITHUB LINK",   page: "github",  fontSize: 68, offsetX: 8, offsetY: 6,  skew: 0, skewY: -4  },
-  { id: "socials", label: "SOCIALS",       page: "socials", fontSize: 74, offsetX: 16, offsetY: 8,  skew: -3,  skewY: 5   },
-  { id: "sideproj",label: "SIDE PROJECTS", page: "sideproj",fontSize: 56, offsetX: 10, offsetY: 6,  skew: -4,  skewY: 7   },
+  {
+    id: "about",
+    label: "ABOUT ME",
+    page: "about",
+    fontSize: 80,
+    offsetX: 0,
+    offsetY: 0,
+    skew: -6,
+    skewY: 10,
+  },
+  {
+    id: "resume",
+    label: "RESUME",
+    page: "resume",
+    fontSize: 66,
+    offsetX: 20,
+    offsetY: 8,
+    skew: -11,
+    skewY: -10,
+  },
+  {
+    id: "github",
+    label: "GITHUB LINK",
+    page: "github",
+    fontSize: 68,
+    offsetX: 8,
+    offsetY: 6,
+    skew: 0,
+    skewY: -4,
+  },
+  {
+    id: "socials",
+    label: "SOCIALS",
+    page: "socials",
+    fontSize: 74,
+    offsetX: 16,
+    offsetY: 8,
+    skew: -3,
+    skewY: 5,
+  },
+  {
+    id: "sideproj",
+    label: "SIDE PROJECTS",
+    page: "sideproj",
+    fontSize: 56,
+    offsetX: 10,
+    offsetY: 6,
+    skew: -4,
+    skewY: 7,
+  },
 ];
 
 const CLIP_SHAPES = [
@@ -23,7 +68,7 @@ export default function P3Menu({ onNavigate }) {
 
   const activate = (idx) => {
     setActive(idx);
-    setAnimKey(k => k + 1);
+    setAnimKey((k) => k + 1);
   };
 
   useEffect(() => {
@@ -33,9 +78,10 @@ export default function P3Menu({ onNavigate }) {
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "ArrowUp")   activate(Math.max(0, active - 1));
-      if (e.key === "ArrowDown") activate(Math.min(ITEMS.length - 1, active + 1));
-      if (e.key === "Enter")     onNavigate?.(ITEMS[active].page);
+      if (e.key === "ArrowUp") activate(Math.max(0, active - 1));
+      if (e.key === "ArrowDown")
+        activate(Math.min(ITEMS.length - 1, active + 1));
+      if (e.key === "Enter") onNavigate?.(ITEMS[active].page);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -216,7 +262,7 @@ export default function P3Menu({ onNavigate }) {
 
       <div className="p3-overlay">
         <div className="p3-name-tag">
-          <span>jade's</span>
+          <span>makoto's</span>
           <span>persona</span>
         </div>
         <div className="p3-stripe" />
@@ -241,18 +287,23 @@ export default function P3Menu({ onNavigate }) {
                   marginTop: item.offsetY,
                   transitionDelay: mounted ? `${i * 80}ms` : "0ms",
                 }}
-                onClick={(e) => { e.preventDefault(); onNavigate?.(item.page); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate?.(item.page);
+                }}
                 onMouseEnter={() => activate(i)}
                 aria-current={isActive ? "page" : undefined}
               >
                 <div className="p3-glow" />
                 <div
                   className="p3-skew-wrap"
-                  style={{ transform: `skewX(${item.skew}deg) skewY(${item.skewY}deg)` }}
+                  style={{
+                    transform: `skewX(${item.skew}deg) skewY(${item.skewY}deg)`,
+                  }}
                 >
                   <div
                     key={isActive ? `pop-${i}-${animKey}` : `idle-${i}`}
-                    className={`p3-shadow-tri${isActive ? ' pop' : ''}`}
+                    className={`p3-shadow-tri${isActive ? " pop" : ""}`}
                     style={{
                       width: estW,
                       height: estH,
@@ -269,7 +320,10 @@ export default function P3Menu({ onNavigate }) {
                     }}
                   />
                   <div className="p3-label-wrap" style={{ opacity }}>
-                    <span className="p3-label-base p3-label-dark" style={{ fontSize: item.fontSize }}>
+                    <span
+                      className="p3-label-base p3-label-dark"
+                      style={{ fontSize: item.fontSize }}
+                    >
                       {item.label}
                     </span>
                     <span
@@ -289,8 +343,14 @@ export default function P3Menu({ onNavigate }) {
         </nav>
 
         <div className={`p3-hint ${mounted ? "mounted" : ""}`}>
-          <div className="p3-hint-row"><span className="p3-hint-key">↑↓</span><span>NAVIGATE</span></div>
-          <div className="p3-hint-row"><span className="p3-hint-key">↵</span><span>CONFIRM</span></div>
+          <div className="p3-hint-row">
+            <span className="p3-hint-key">↑↓</span>
+            <span>NAVIGATE</span>
+          </div>
+          <div className="p3-hint-row">
+            <span className="p3-hint-key">↵</span>
+            <span>CONFIRM</span>
+          </div>
         </div>
       </div>
     </>
