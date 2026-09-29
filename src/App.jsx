@@ -20,7 +20,6 @@ function MenuScreen() {
   return (
     <div id="menu-screen">
       <video src={menuVideo} autoPlay loop muted playsInline />
-      <BackgroundMusic src={Cyn} clickSrc={Evoker} />
       <P3Menu onNavigate={(page) => navigate(`/${page}`)} />
     </div>
   );
@@ -69,5 +68,10 @@ function AnimatedRoutes() {
 }
 
 export default function App() {
-  return <AnimatedRoutes />;
+  return (
+    <>
+      <BackgroundMusic src={Cyn} clickSrc={Evoker} />
+      <AnimatedRoutes />
+    </>
+  );
 }
