@@ -5,6 +5,7 @@ import main1 from "./assets/main1.mp4";
 import main2 from "./assets/main2.mp4";
 import main3 from "./assets/main3.mp4";
 import BackgroundMusic from "./BackgroundMusic";
+import ClickSound from "./ClickSound";
 import P3Menu from "./P3Menu";
 import VideoPage from "./VideoPage";
 import ResumePage from "./ResumePage";
@@ -12,6 +13,7 @@ import PageTransition from "./PageTransition";
 import Socials from "./Socials";
 import AboutMe from "./AboutMe";
 import Cyn from "./assets/coloryournight.mp3";
+import Evoker from "./assets/evoker.mp3";
 import "./App.css";
 
 function MenuScreen() {
@@ -20,6 +22,7 @@ function MenuScreen() {
     <div id="menu-screen">
       <video src={menuVideo} autoPlay loop muted playsInline />
       <BackgroundMusic src={Cyn} />
+      <ClickSound src={Evoker} />
       <P3Menu onNavigate={(page) => navigate(`/${page}`)} />
     </div>
   );
