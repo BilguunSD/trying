@@ -10,6 +10,7 @@ import ResumePage from "./ResumePage";
 import PageTransition from "./PageTransition";
 import Socials from "./Socials";
 import AboutMe from "./AboutMe";
+import CYN from "./assets/coloryournight.mp3";
 import "./App.css";
 
 function MenuScreen() {
@@ -17,6 +18,7 @@ function MenuScreen() {
   return (
     <div id="menu-screen">
       <video src={menuVideo} autoPlay loop muted playsInline />
+      <audio src={CYN} autoPlay loop muted playsInline></audio>
       <P3Menu onNavigate={(page) => navigate(`/${page}`)} />
     </div>
   );
