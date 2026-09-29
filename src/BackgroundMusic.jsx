@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./BackgroundMusic.css";
 
-export default function BackgroundMusic({ src, clicSrc }) {
+export default function BackgroundMusic({ src, clickSrc }) {
   const audioRef = useRef(null);
   const [volume, setVolume] = useState(0.5);
 
