@@ -18,7 +18,9 @@ function MenuScreen() {
   return (
     <div id="menu-screen">
       <video src={menuVideo} autoPlay loop muted playsInline />
-      <audio src={CYN} autoPlay loop muted playsInline></audio>
+      <audio>
+        <source src="./assets/coloryournight.mp3" type="audio/mpeg" git />
+      </audio>
       <P3Menu onNavigate={(page) => navigate(`/${page}`)} />
     </div>
   );
